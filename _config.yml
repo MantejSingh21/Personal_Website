@@ -1,4 +1,4 @@
-title:               My digital garden
+title:               Mantej Singh
 include:             ['_pages']
 exclude:             ['_includes/notes_graph.json']
 # You may need to change the base URL depending on your deploy configuration.
@@ -20,7 +20,9 @@ embed_tweets: false
 permalink:           pretty
 relative_permalinks: false
 
+remote_theme: pages-themes/minimal@v0.2.0
 plugins:
+  - jekyll-remote-theme
   - jekyll-last-modified-at
 
 sass:
