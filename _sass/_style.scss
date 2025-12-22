@@ -357,7 +357,11 @@ li::marker {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 0.65em;
+  gap: 0.35em;
+}
+
+.writing-list li {
+  padding: 0;
 }
 
 .writing-list a {
