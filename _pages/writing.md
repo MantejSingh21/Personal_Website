@@ -13,11 +13,7 @@ permalink: /writing
     {% assign writing_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
     {% for note in writing_notes %}
       {% assign stamp_source = note.date | default: note.last_modified_at %}
-      {% if stamp_source %}
-        {% assign stamp = stamp_source | date: "%Y : %m" %}
-      {% else %}
-        {% assign stamp = "—" %}
-      {% endif %}
+      {% assign stamp = stamp_source | date: "%Y · %m" %}
       <li>
         <a class="internal-link plain" href="{{ site.baseurl }}{{ note.url }}">
           <div class="flex align-baseline">

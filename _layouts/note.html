@@ -13,7 +13,7 @@ layout: default
   <h1>{{ page.title }}</h1>
   {% if note_date %}
   <div class="metadata note-meta">
-    <time datetime="{{ note_date | date_to_xmlschema }}">{{ note_date | date: "%B %-d, %Y" }}</time>
+    <time datetime="{{ note_date | date_to_xmlschema }}">{{ note_date | date: "%Y · %m" }}</time>
     {% if minutes %}
     <span class="note-separator">·</span>
     <span class="reading-time" title="Estimated read time">{{ minutes }} minute{% if minutes > 1 %}s{% endif %} read</span>

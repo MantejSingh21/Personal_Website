@@ -16,7 +16,7 @@ permalink: /
     {% for note in recent_notes limit: 6 %}
       {% assign stamp_source = note.date | default: note.last_modified_at %}
       {% if stamp_source %}
-        {% assign stamp = stamp_source | date: "%Y : %m" %}
+        {% assign stamp = stamp_source | date: "%Y · %m" %}
       {% else %}
         {% assign stamp = "—" %}
       {% endif %}
