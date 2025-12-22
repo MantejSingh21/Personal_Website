@@ -9,8 +9,8 @@
 
   <meta property="og:site_name" content="{{ site.title }}">
 
-  <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon.png">
-  <link rel="apple-touch-icon" href="{{ site.baseurl }}/favicon.png">
+  <link rel="icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/favicon.png' | relative_url }}">
 
   <script>
     (function() {
@@ -24,7 +24,7 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
+  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
 
   {% if page.excerpt %}
   <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}"/>
