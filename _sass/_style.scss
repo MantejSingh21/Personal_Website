@@ -159,7 +159,7 @@ article {
 
 p {
   max-width: var(--wrap-normal);
-  margin: 0 0 1.25em 0;
+  margin: 0 0 1.5em 0;
 }
 
 time {
@@ -172,9 +172,9 @@ time {
 
 footer {
   border-top: 1px solid var(--color-border);
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  font-size: 0.95rem;
+  margin-top: 2em;
+  padding-top: 1em;
+  font-size: 0.875rem;
   color: var(--color-muted);
   max-width: var(--wrap-wide);
   width: var(--wrap-normal);
@@ -205,22 +205,12 @@ hr {
   width: 100%;
   border: 0;
   height: 1px;
-  margin: 3em 0 2.5em;
+  margin: 1.5em 0;
   background: var(--color-border);
-  position: relative;
 }
 
-hr:before {
-  content: "•••";
-  position: absolute;
-  top: -0.75em;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: calc(0.8em + 0.2vw);
-  letter-spacing: 1.1em;
-  color: var(--color-faint);
-  background: var(--color-bg);
-  padding: 0 0.5em;
+main > hr {
+  margin: 4em 0;
 }
 
 article hr {
@@ -231,6 +221,17 @@ article hr {
   background: none;
   text-align: center;
   overflow: visible;
+}
+
+article hr:before {
+  content: "•••";
+  display: inline-block;
+  font-size: calc(0.8em + 0.2vw);
+  margin-left: 0.6em;
+  letter-spacing: 1.25em;
+  color: var(--color-faint);
+  position: relative;
+  top: -0.75em;
 }
 
 h1,
@@ -260,7 +261,7 @@ h2 {
 h3 {
   font-weight: 500;
   font-size: 1em;
-  margin: 1.5em 0 0.6em;
+  margin: 1em 0 0.5em;
 }
 
 h4,
@@ -534,13 +535,13 @@ th {
 
 .note-heading {
   text-align: center;
-  margin: 1rem auto 2.5rem;
+  margin: 1rem auto 2rem;
 }
 
 .metadata {
   color: var(--color-muted);
   font-family: var(--font-ui);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   line-height: 1.4;
   margin-top: 0.6em;
 }
@@ -560,7 +561,7 @@ th {
 .note-body {
   max-width: var(--wrap-normal);
   width: var(--wrap-normal);
-  margin: 0 auto 3rem;
+  margin: 0 auto 4em;
 }
 
 .linked-mentions {
