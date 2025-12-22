@@ -9,5 +9,35 @@
     </div>
 
     {% include link-previews.html wrapperQuerySelector="content" %}
+
+    <script>
+      (function() {
+        var toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+
+        var root = document.documentElement;
+
+        function apply(mode) {
+          if (mode === 'dark') {
+            root.classList.add('theme-dark');
+            toggle.setAttribute('aria-checked', 'true');
+          } else {
+            root.classList.remove('theme-dark');
+            toggle.setAttribute('aria-checked', 'false');
+          }
+          try {
+            localStorage.setItem('theme', mode);
+          } catch (e) {}
+        }
+
+        toggle.addEventListener('click', function() {
+          var isDark = root.classList.contains('theme-dark');
+          apply(isDark ? 'light' : 'dark');
+        });
+
+        var initialDark = root.classList.contains('theme-dark');
+        toggle.setAttribute('aria-checked', initialDark ? 'true' : 'false');
+      })();
+    </script>
   </body>
 </html>

@@ -1,19 +1,17 @@
 ---
 layout: page
-title: Home
-id: home
-permalink: /
+title: Writing
+permalink: /writing
 ---
 
 <heading>
-  <h1>Welcome</h1>
+  <h1>Writing</h1>
 </heading>
 
 <article>
-  <p class="muted font-ui">Writing</p>
   <ul class="writing-list tabular-nums">
-    {% assign recent_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
-    {% for note in recent_notes limit: 6 %}
+    {% assign writing_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
+    {% for note in writing_notes %}
       {% assign stamp_source = note.date | default: note.last_modified_at %}
       {% if stamp_source %}
         {% assign stamp = stamp_source | date: "%Y : %m" %}
@@ -30,6 +28,4 @@ permalink: /
       </li>
     {% endfor %}
   </ul>
-
-  <p class="small muted">See everything in the <a class="internal-link" href="{{ site.baseurl }}/writing">Writing</a> list.</p>
 </article>
