@@ -1,14 +1,17 @@
-<div class="nav-inner">
-  <div class="nav-left">
-    <a class="plain" href="{{ site.baseurl }}/">{{ site.title }}</a>
-    <span class="nav-divider">/</span>
-    <a class="muted plain" href="{{ site.baseurl }}/writing">Writing</a>
-  </div>
-  <div class="nav-right">
-    <a class="muted plain" href="{{ site.baseurl }}/about">About</a>
-    <button id="theme-toggle" title="Toggle theme" aria-label="Toggle theme" type="button" role="switch" aria-checked="false">
-      <div class="theme-toggle-slide"></div>
-      <div class="theme-toggle-switch"></div>
-    </button>
-  </div>
-</div>
+<nav class="flex align-center font-ui">
+  <span class="flex-grow">
+    <a class="plain site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+    {% if page.layout == "note" %}
+      <span class="faint">/</span>
+      <a href="{{ site.baseurl }}/" class="muted plain">Writing</a>
+    {% endif %}
+  </span>
+  <span class="flex-shrink ssr">
+    <a href="{{ site.baseurl }}/about" class="muted plain">About</a>
+    <a href="{{ site.baseurl }}/now" class="muted plain ssl mh">Now</a>
+  </span>
+  <span id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode" type="button" role="switch">
+    <div class="theme-toggle-slide"></div>
+    <div class="theme-toggle-switch"></div>
+  </span>
+</nav>

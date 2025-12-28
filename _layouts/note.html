@@ -9,36 +9,32 @@ layout: default
 {% endif %}
 {% assign note_date = page.date | default: page.last_modified_at %}
 
-<heading class="note-heading">
+<heading>
   <h1>{{ page.title }}</h1>
   {% if note_date %}
-  <div class="metadata note-meta">
-    <time datetime="{{ note_date | date_to_xmlschema }}">{{ note_date | date: "%Y · %m" }}</time>
-    {% if minutes %}
-    <span class="note-separator">·</span>
-    <span class="reading-time" title="Estimated read time">{{ minutes }} minute{% if minutes > 1 %}s{% endif %} read</span>
-    {% endif %}
-  </div>
+    <div class="metadata muted ms2 font-ui">
+      <time datetime="{{ note_date | date_to_xmlschema }}">{{ note_date | date: "%B %-d, %Y" }}</time>
+      {% if minutes %}
+        <span class="note-separator">·</span>
+        <span class="reading-time" title="Estimated read time">{{ minutes }} minute{% if minutes > 1 %}s{% endif %} read</span>
+      {% endif %}
+    </div>
   {% endif %}
 </heading>
 
-<article class="note-body">
-  <content>
-    {{ content }}
-  </content>
+<article>
+  {{ content }}
 </article>
 
-{% if page.backlinks and page.backlinks.size > 0 %}
-<hr>
-<div class="wrap linked-mentions">
-  <div class="muted font-ui linked-mentions-title">Linked mentions</div>
-  <div class="backlinks">
-    {% for backlink in page.backlinks %}
-      <a class="backlink plain internal-link" href="{{ site.baseurl }}{{ backlink.url }}{%- if site.use_html_extension -%}.html{%- endif -%}">
-        <div class="small">{{ backlink.title }}</div>
-        <div class="muted smaller backlink-snippet">{{ backlink.excerpt | strip_html | truncatewords: 22 }}</div>
-      </a>
-    {% endfor %}
+{% assign related_notes = site.notes | where_exp: "note", "note.url != page.url" | sort: "last_modified_at_timestamp" | reverse | limit: 4 %}
+{% if related_notes and related_notes.size > 0 %}
+  <hr>
+  <div class="wrap">
+    <p class="muted font-ui">You might also enjoy</p>
+    <ul>
+      {% for note in related_notes %}
+        <li><a href="{{ site.baseurl }}{{ note.url }}" class="internal-link">{{ note.title }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
-</div>
 {% endif %}

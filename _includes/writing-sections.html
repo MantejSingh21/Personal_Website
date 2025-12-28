@@ -1,0 +1,70 @@
+{% assign sorted_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
+{% assign latest = sorted_notes | first %}
+
+<div class="wrap">
+{% if latest %}
+  {% assign latest_stamp_source = latest.date | default: latest.last_modified_at %}
+  {% assign latest_words = latest.content | strip_html | number_of_words %}
+  {% assign latest_minutes = latest_words | plus: 199 | divided_by: 200 %}
+  {% if latest_minutes == 0 %}
+    {% assign latest_minutes = 1 %}
+  {% endif %}
+  <p><a href="{{ site.baseurl }}{{ latest.url }}" class="muted font-ui">Latest</a></p>
+  <div>
+    <a href="{{ site.baseurl }}{{ latest.url }}" class="plain">
+      <h2>{{ latest.title }}</h2>
+        <div class="metadata muted small pb font-ui">
+          <time datetime="{{ latest_stamp_source | date_to_xmlschema }}">{{ latest_stamp_source | date: "%B %-d, %Y" }}</time>
+          {% if latest_minutes %}
+            <span class="note-separator">·</span>
+            <span class="reading-time" title="Estimated read time">{{ latest_minutes }} minute{% if latest_minutes > 1 %}s{% endif %} read</span>
+          {% endif %}
+        </div>
+        <div class="small muted">
+          {{ latest.excerpt | default: latest.content | strip_html | truncatewords: 16 }} Keep&nbsp;reading&nbsp;&rarr;
+        </div>
+      </a>
+    </div>
+    <hr class="mn2 ms2">
+  {% endif %}
+
+  {% assign raw_topics = site.notes | map: "topics" | join: "," | split: "," | uniq | sort %}
+  {% assign first_topic = true %}
+  {% if raw_topics %}
+    <p class="muted internal-link font-ui">Topics</p>
+    <div class="line-height-loose">
+      {% for topic in raw_topics %}
+        {% assign topic_clean = topic | strip %}
+        {% if topic_clean != "" %}
+          {% unless first_topic %}
+            <span class="muted">,</span>
+          {% endunless %}
+          <a href="{{ site.baseurl }}/topics#{{ topic_clean | slugify }}" class="internal-link">{{ topic_clean }}</a>
+          {% assign first_topic = false %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <hr class="mn2 ms2">
+
+  <p class="muted font-ui"><a href="{{ site.baseurl }}/writing" class="muted plain no-underline">Writing</a></p>
+  <ul class="list-plain tabular-nums">
+    {% for note in sorted_notes %}
+      {% assign stamp_source = note.date | default: note.last_modified_at %}
+      {% if stamp_source %}
+        {% assign stamp = stamp_source | date: "%Y · %m" %}
+      {% else %}
+        {% assign stamp = "—" %}
+      {% endif %}
+      <li>
+        <a href="{{ site.baseurl }}{{ note.url }}" class="plain no-underline">
+          <flex class="align-baseline">
+            <span class="muted ppr flex-shrink small mh nowrap font-ui">{{ stamp }}</span>
+            <u>{{ note.title }}</u>
+          </flex>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
